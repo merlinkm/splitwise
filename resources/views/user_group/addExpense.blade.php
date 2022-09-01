@@ -61,9 +61,9 @@
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Description</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" name="description" placeholder="Short Description"
-                                                    value="{{ old('description') }}">
-                                                    @error('description')
+                                                <input type="text" class="form-control" name="description"
+                                                    placeholder="Short Description" value="{{ old('description') }}">
+                                                @error('description')
                                                     <p style="color: red">{{ $message }}</p>
                                                 @enderror
                                             </div>
@@ -72,11 +72,11 @@
                                             <label class="col-sm-2 col-form-label">Total Amount</label>
                                             <div class="col-sm-10">
                                                 <div class="input-group">
-                                                <input type="numeric" class="form-control"name="amount"
-                                                    value="{{ old('amount') }}" placeholder="Total amount">
-                                                <span class="input-group-append" id="basic-addon3">
-                                                    <label class="input-group-text">$</label>
-                                                </span>
+                                                    <input type="numeric" class="form-control"name="amount"
+                                                        value="{{ old('amount') }}" placeholder="Total amount">
+                                                    <span class="input-group-append" id="basic-addon3">
+                                                        <label class="input-group-text">$</label>
+                                                    </span>
                                                 </div>
                                                 @error('amount')
                                                     <p style="color: red">{{ $message }}</p>
@@ -86,12 +86,13 @@
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Paied By</label>
                                             <div class="col-sm-10">
-                                                <select class="js-example-basic-multiple form-control"
-                                                    name="user">
+                                                <select class="js-example-basic-multiple form-control" name="user">
                                                     <option value="">Select User</option>
                                                     @if (count($group->user) > 0)
                                                         @foreach ($group->user as $row)
-                                                            <option value="{{ $row->id }}" {{old('user') == $row->id ?'selected':'' }}>{{ $row->name }}</option>
+                                                            <option value="{{ $row->id }}"
+                                                                {{ old('user') == $row->id ? 'selected' : '' }}>
+                                                                {{ $row->name }}</option>
                                                         @endforeach
                                                     @endif
                                                 </select>

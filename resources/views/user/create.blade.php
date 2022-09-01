@@ -17,7 +17,7 @@
                         <li class="breadcrumb-item">
                             <a href="/"><i class="feather icon-home"></i></a>
                         </li>
-                        <li class="breadcrumb-item"><a href="{{route('user.index')}}">User List </a> </li>
+                        <li class="breadcrumb-item"><a href="{{ route('user.index') }}">User List </a> </li>
                     </ul>
                 </div>
             </div>
@@ -27,7 +27,6 @@
         <div class="main-body">
             <div class="page-wrapper">
                 <div class="page-body">
-
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="card">

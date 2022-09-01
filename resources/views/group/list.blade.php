@@ -1,14 +1,11 @@
 @extends('layout.app')
 @section('style')
     <link rel="stylesheet" type="text/css" href="../files/assets/icon/themify-icons/themify-icons.css">
-
     <link rel="stylesheet" type="text/css" href="../files/assets/icon/icofont/css/icofont.css">
     <link rel="stylesheet" type="text/css"
         href="../files/bower_components/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
-    <!-- <link rel="stylesheet" type="text/css" href="../files/assets/pages/data-table/css/buttons.dataTables.min.css"> -->
     <link rel="stylesheet" type="text/css"
         href="../files/bower_components/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css">
-
     <link rel="stylesheet" type="text/css" href="../files/assets/css/pages.css">
 @endsection
 @section('content')
@@ -38,13 +35,13 @@
         <div class="main-body">
             <div class="page-wrapper">
                 <div class="page-body">
-
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="card">
                                 <div class="card-header">
                                     <h5>Group List</h5>
-                                    <a href="{{route('group.create')}}"><button class="btn btn-primary">Create Group</button></a>
+                                    <a href="{{ route('group.create') }}"><button class="btn btn-primary">Create
+                                            Group</button></a>
                                 </div>
                                 <div class="card-block">
                                     @if ($message = Session::get('success'))
@@ -74,16 +71,16 @@
                                                                 @foreach ($row->expenses as $item)
                                                                     <?php $total += $item->amount; ?>
                                                                 @endforeach
-                                                                ${{$total}}
+                                                                ${{ $total }}
                                                             </td>
                                                             <td>
-                                                                <a href="/add-user/{{$row->id}}">
+                                                                <a href="/add-user/{{ $row->id }}">
                                                                     <button class="btn btn-success">Add User</button>
-                                                                </a> | 
-                                                                <a href="/add-expenses/{{$row->id}}">
+                                                                </a> |
+                                                                <a href="/add-expenses/{{ $row->id }}">
                                                                     <button class="btn btn-primary">Add Expenses</button>
                                                                 </a> |
-                                                                <a href="/view-expenses/{{$row->id}}">
+                                                                <a href="/view-expenses/{{ $row->id }}">
                                                                     <button class="btn btn-info">View Expenses</button>
                                                                 </a>
                                                             </td>
@@ -91,8 +88,7 @@
                                                         <?php $i++; ?>
                                                     @endforeach
                                                 @endif
-
-                                                </tfoot>
+                                            </tbody>
                                         </table>
                                     </div>
                                 </div>
@@ -110,6 +106,5 @@
     <script src="../files/bower_components/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
     <script src="../files/bower_components/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
     <script src="../files/bower_components/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
-
     <script src="../files/assets/pages/data-table/js/data-table-custom.js"></script>
 @endsection

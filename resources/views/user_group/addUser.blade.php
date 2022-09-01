@@ -40,7 +40,6 @@
         <div class="main-body">
             <div class="page-wrapper">
                 <div class="page-body">
-
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="card">
@@ -64,12 +63,14 @@
                                                 <select class="js-example-basic-multiple form-control" multiple="multiple"
                                                     name="user[]">
                                                     @if (count($users) > 0)
-                                                    <?php $member = array(); ?>
-                                                        @foreach($group->user as $me)
-                                                            <?php $member[] =  $me->id; ?>
+                                                        <?php $member = []; ?>
+                                                        @foreach ($group->user as $me)
+                                                            <?php $member[] = $me->id; ?>
                                                         @endforeach
                                                         @foreach ($users as $row)
-                                                            <option value="{{ $row->id }}" <?=in_array($row->id,$member) ? 'selected':''?> >{{ $row->name }}</option>
+                                                            <option value="{{ $row->id }}"
+                                                                <?= in_array($row->id, $member) ? 'selected' : '' ?>>
+                                                                {{ $row->name }}</option>
                                                         @endforeach
                                                     @endif
                                                 </select>
