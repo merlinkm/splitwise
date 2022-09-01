@@ -8,9 +8,17 @@ use App\Models\User;
 use App\Models\Expense;
 use App\Http\Requests\GroupUserStoreRequest;
 use App\Http\Requests\GroupExpenseStoreRequest;
+use App\Services\GroupService;
 
 class UserGroupController extends Controller
 {
+    protected $expense;
+    
+    public function __construct(GroupService $group_expense)
+    {
+        $this->group_expense = $expense;
+    }
+
     public function AddUser($group_id)
     {
         $data['group'] =  Group::find($group_id);
@@ -35,8 +43,8 @@ class UserGroupController extends Controller
     public function StoreExpenses(GroupExpenseStoreRequest $request,$group_id)
     {
         $group = Group::find($group_id);
-        $totalUser = count($group->user);
-        $perPerson = round($request->amount / $totalUser , 2);
+
+        $perPerson = $this->group_expense->PerPersonExpense($group_id,$request->amount);
 
         $expense = Expense::create([
             'amount' => $request->amount,

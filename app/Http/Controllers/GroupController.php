@@ -6,23 +6,21 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Group;
 use App\Http\Requests\GroupStoreRequest;
+use App\Services\GroupService;
 
 class GroupController extends Controller
 {
+    protected $group_expense;
+    
+    public function __construct(GroupService $group_expense)
+    {
+        $this->group_expense = $group_expense;
+    }
+
     public function index()
     {
-        $group_id = DB::table('groups')
-                ->join('group_user','groups.id','=','group_user.group_id','left')
-                ->where('groups.user_id',env('SESSION_ID'))
-                ->orWhere('group_user.user_id',env('SESSION_ID'))
-                ->pluck('groups.id');
-
-        for($i= 0; $i < count($group_id) ; $i++){
-            $id[] = $group_id[$i];
-        }
-        $data['groups'] = Group::whereIn('id',$id)->orderBy('id','desc')->get();
-
-        return view('group.list',$data);
+        $groups = $this->group_expense->groupDetails();
+        return view('group.list',compact('groups'));
     }
 
     public function create()
