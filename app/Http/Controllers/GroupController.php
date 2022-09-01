@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Group;
+use App\Http\Requests\GroupStoreRequest;
 
 class GroupController extends Controller
 {
@@ -29,12 +30,8 @@ class GroupController extends Controller
         return view('group.create');
     }
 
-    public function store(Request $request)
+    public function store(GroupStoreRequest $request)
     {
-        $request->validate([
-            'name' => 'required',
-        ]);
-
         $group = new Group;
         $group->name = $request->name;
         $group->user_id = env('SESSION_ID');

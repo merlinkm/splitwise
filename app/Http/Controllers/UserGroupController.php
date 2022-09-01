@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Group;
 use App\Models\User;
 use App\Models\Expense;
+use App\Http\Requests\GroupUserStoreRequest;
+use App\Http\Requests\GroupExpenseStoreRequest;
 
 class UserGroupController extends Controller
 {
@@ -16,11 +18,8 @@ class UserGroupController extends Controller
         return view('user_group.addUser',$data);
     }
 
-    public function StoreUser(Request $request, $group_id)
+    public function StoreUser(GroupUserStoreRequest $request, $group_id)
     {
-        $request->validate([
-            'user' => 'required',
-        ]);
         $group = Group::find($group_id);
         $data['users'] =  $group->user()->sync($request->user);
 
@@ -33,14 +32,8 @@ class UserGroupController extends Controller
         return view('user_group.addExpense',$data);
     }
 
-    public function StoreExpenses(Request $request, $group_id)
+    public function StoreExpenses(GroupExpenseStoreRequest $request,$group_id)
     {
-        $request->validate([
-            'amount' => 'required',
-            'user' => 'required',
-            'description' => 'required',
-        ]);
-
         $group = Group::find($group_id);
         $totalUser = count($group->user);
         $perPerson = round($request->amount / $totalUser , 2);
